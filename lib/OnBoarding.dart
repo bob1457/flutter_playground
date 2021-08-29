@@ -38,8 +38,8 @@ class _onboardingState extends State<onboarding> {
                   controller: _pageController,
                   children: [
                     onBoardPage("onboard1", "Welcome to Aking"),
-                    onBoardPage("onboard1", "Work Happens"),
-                    onBoardPage("onboard1", "Task and Assignemtn"),
+                    onBoardPage("onboard2", "Work Happens"),
+                    onBoardPage("onboard3", "Task and Assignemtn"),
                   ],
                   onPageChanged: (value) => {setCurrentPage(value)},
                 ),
