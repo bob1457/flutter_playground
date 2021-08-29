@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'LoginPage.dart';
+
 class OnBoarding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -43,10 +45,78 @@ class _onboardingState extends State<onboarding> {
                   ],
                   onPageChanged: (value) => {setCurrentPage(value)},
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                 children: List.generate(3, (index) => getIndicator(index)),
               )
             ],
-          )
+          ),
+
+          Positioned(
+            bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                margin: EdgeInsets.only(top: 20),
+                height: 200,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('asset/image/path1.png'),
+                    fit: BoxFit.fill,
+                  )
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: openLoginPage,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 100),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.2),
+                              offset: Offset(0,9),
+                              blurRadius: 20,
+                              spreadRadius: 3
+                            )
+                          ]
+                        ),
+                        margin: EdgeInsets.only(top: 20),
+                        child: Text('Get Started', style: TextStyle(
+                          fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 30,),
+                    Text('Login', style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),)
+                  ],
+                ),
+            ),
+          ),
+
         ],
+      ),
+    );
+  }
+
+  AnimatedContainer getIndicator(int pageNo)
+  {
+    return AnimatedContainer(
+        duration: Duration(microseconds: 1000),
+      height: 10,
+        width: (currentPage == pageNo) ? 20 : 10,
+      margin: EdgeInsets.symmetric(horizontal: 5),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(5)),
+        color: (currentPage == pageNo) ? Colors.black : Colors.grey,
       ),
     );
   }
@@ -69,6 +139,23 @@ class _onboardingState extends State<onboarding> {
             )
           ),
         ),
+        SizedBox(height: 10,),
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 10),
+          child: Text(title, style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),),
+        ),
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+          child: Text('Lorem inpum is simple txt of pr,df df dfdsf erewr wreerer, Lorem inpum is simple txt of pr,df df dfdsf erewr wreerer', style: TextStyle(
+            fontSize: 16,
+            color: Colors.grey
+          ),textAlign: TextAlign.center,),
+        ),
+        // SizedBox(height: 50,),
+
       ],
     );
   }
@@ -78,6 +165,11 @@ class _onboardingState extends State<onboarding> {
     setState(() {
 
     });
+  }
+
+  openLoginPage()
+  {
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
   }
 }
 
